@@ -1,3 +1,8 @@
+# Aplicacion TODO para practicar React y Tailwind
+
+- [preview-pp](https://react-tailwind-practice-rg.netlify.app/)
+- [FrontendMentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
