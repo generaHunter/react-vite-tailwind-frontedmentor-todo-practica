@@ -1,3 +1,4 @@
+import { DragDropContext } from "@hello-pangea/dnd";
 import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import TodoCreate from "./components/TodoCreate";
@@ -72,6 +73,19 @@ const App = () => {
         }
     };
 
+    const handleDragEnd = (result) => {
+        if (!result.destination) return;
+
+        const startIndex = result.source.index;
+        const endIndex = result.destination.index;
+
+        const todosCopy = JSON.parse(JSON.stringify(todos));
+
+        const [reorderItem] = todosCopy.splice(startIndex, 1);
+        todosCopy.splice(endIndex, 0, reorderItem);
+        setTodos([...todosCopy]);
+    };
+
     useEffect(() => {
         localStorage.setItem("todosData", JSON.stringify(todos));
         setCounterCompleted(todos.filter((x) => !x.completed).length);
@@ -84,11 +98,13 @@ const App = () => {
 
             <main className="md: container mx-auto mt-8 max-w-xl px-4">
                 <TodoCreate addTodo={addTodo} />
-                <TodoList
-                    todos={todosFilter}
-                    completedTodo={completedTodo}
-                    deleteTodo={deleteTodo}
-                />
+                <DragDropContext onDragEnd={handleDragEnd}>
+                    <TodoList
+                        todos={todosFilter}
+                        completedTodo={completedTodo}
+                        deleteTodo={deleteTodo}
+                    />
+                </DragDropContext>
                 <TodoComputed
                     counterCompleted={counterCompleted}
                     clearCompleted={clearCompleted}
