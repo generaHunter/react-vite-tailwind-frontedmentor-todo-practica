@@ -79,10 +79,10 @@ const App = () => {
     }, [todos]);
 
     return (
-        <div className="min-h-screen bg-gray-300 bg-[url(./assets/images/bg-mobile-light.jpg)] bg-contain bg-no-repeat dark:bg-gray-900 dark:bg-[url(./assets/images/bg-mobile-dark.jpg)]">
+        <div className="min-h-screen bg-gray-300 bg-[url(./assets/images/bg-mobile-light.jpg)] bg-contain bg-no-repeat md:bg-[url(./assets/images/bg-desktop-light.jpg)] dark:bg-gray-900 dark:bg-[url(./assets/images/bg-mobile-dark.jpg)] md:dark:bg-[url(./assets/images/bg-desktop-dark.jpg)]">
             <Header />
 
-            <main className="container mx-auto mt-8 px-4">
+            <main className="md: container mx-auto mt-8 max-w-xl px-4">
                 <TodoCreate addTodo={addTodo} />
                 <TodoList
                     todos={todosFilter}
